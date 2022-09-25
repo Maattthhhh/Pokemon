@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        @import url('http://fonts.cdnfonts.com/css/pokemon-solid');
+        body{
+            text-align: center;
+        }
+        .letter{
+            font-family: 'Pokemon Solid', sans-serif;
+            display: inline-block;
+            letter-spacing: 10px;
+            font-size: 50px;
+            color: #ffcb05;
+            text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+        }
+        .letter.active{
+            transform: scale(1.5) rotate(20deg);
+        }
+        h1{
+            display: inline-block;            
+        }
+        img {
+            display: inline-block;
+            height: 100px;
+            width: 100px;
+        }   
+        #bach:hover{
+            animation-name: bosch;
+            animation-duration: 1.2s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            filter: brightness(100%);
+        }
+        @keyframes bosch{
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+        .vastolorde {
+            appearance: button;
+            background-color:red;
+            background-image: none;
+            border: 1px solid #000;
+            border-radius: 4px;
+            box-shadow: #fff 4px 4px 0 0,#000 4px 4px 0 1px;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            font-family: 'Pokemon Solid', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 10px;
+            line-height: 20px;
+            margin: 0 5px 10px 0;
+            overflow: visible;
+            padding: 12px 40px;
+            text-align: center;
+            text-transform: none;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+            vertical-align: middle;
+            white-space: nowrap;
+            }
+
+        .vastolorde:focus {
+            text-decoration: none;
+        }
+
+        .vastolorde:hover {
+            text-decoration: none;
+        }
+
+        .vastolorde:active {
+            box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
+            outline: 0;
+        }
+
+        .vastolorde:not([disabled]):active {
+            box-shadow: #fff 2px 2px 0 0, red 2px 2px 0 1px;
+            transform: translate(2px, 2px);
+        }
+
+        @media (min-width: 768px) {
+        .vastolorde {
+            padding: 12px 50px;
+        }
+        }   
+    </style>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <img src="images/pokeball.jpg" id="bach">
+
+        <h1><span class="js-letter">Pokémon!</span></h1>
+        <br>
+        <img id="myImage" src="images/pikachu.gif" style="width:400px; height: 400px">
+        <br>
+        <br>
+        <button onclick="gary()" class="vastolorde" id="hichigo">Generate Random Pokémon!</button>
+        <script>
+            function gary(){
+                const AD = Math.ceil(Math.random()*88);
+                var brock = document.getElementById("myImage");
+                let misty = 0
+                while (misty < 88){
+                    brock.src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/crystal/"+AD+".png";
+                    hichigo.innerHTML = "Generate Random Pokémon!";
+                    misty++;
+                }
+            }
+        </script>
+        <script>
+            const h1 = document.querySelector("h1")
+            const letters = h1.innerText.split('')
+            let html = ""
+            letters.forEach(letter=>{
+                let classes = ''
+                if(letter!==' '){
+                    classes = 'letter js-letter'
+                }
+                html = html + `<span class ="${classes}">${letter}</span>`
+            })
+            h1.innerHTML = html
+            const jsLetters = document.querySelectorAll(".js-letter")
+            jsLetters.forEach(node=>{
+                node.addEventListener("mouseover", function(event){
+                    console.log(this.innerText)
+                    this.classList.add("active")
+                })
+                node.addEventListener("mouseout", function(event){
+                    console.log('out')
+                    this.classList.remove("active")
+                })
+            })
+</script>
+    </head>
+</html>
