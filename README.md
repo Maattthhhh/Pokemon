@@ -1,4 +1,4 @@
-# Pokemon
+# Random Pokemon Image Generator
 This project generates random Pokemon images. It consists of a website hosted on GitHub Pages that incorporates Pokémon-themed elements using HTML, CSS, and JavaScript.
 
 It has:
