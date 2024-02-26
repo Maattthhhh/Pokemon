@@ -99,6 +99,14 @@
         .vastolorde {
             padding: 12px 50px;
         }
+        }
+        #pokemonInfo {
+            font-family: 'Pokemon Solid', sans-serif;
+            display: inline-block;
+            letter-spacing: 5px;
+            font-size: 25px;
+            color: #ffcb05;
+            text-shadow: -1.5px 0 black, 0 1.5px black, 1.5px 0 black, 0 -1.5px black;
         }   
     </style>
     <head>
@@ -106,19 +114,26 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/jpg" sizes="16x16" href="pokeball.jpg">
+        <script src="pokemon_dictionary.js"></script>
+    </head>
         <img src="pokeball.jpg" id="bach">
         <h1><span class="js-letter">Pokémon!</span></h1>
         <br>
-        <a href="https://maattthhhh.github.io/Tracking-ISSS/tracking_iss.html"><img id="myImage" src="pikachu.gif" style="width:400px; height: 400px" class="teamrocket"></a>
+        <a href="https://maattthhhh.github.io/Tracking-ISS/tracking_iss.html"><img id="myImage" src="pikachu.gif" style="width:400px; height: 400px" class="teamrocket"></a>
+        <br>
+        <br>
+        <div id="pokemonInfo"></div>
         <br>
         <br>
         <button onclick="gary()" class="vastolorde" id="hichigo">Generate Random Pokémon!</button>
         <script>
             function gary(){
                 const AD = Math.ceil(Math.random()*150);
+                const myPokemon = mapping[AD];
+                checkPokemon(myPokemon)
                 var brock = document.getElementById("myImage");
                 let misty = 0
-                while (misty < 88){
+                while (misty < 150){
                     brock.src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/crystal/"+AD+".png";
                     hichigo.innerHTML = "Generate Random Pokémon!";
                     misty++;
@@ -147,6 +162,5 @@
                 })
             })
         </script>
-    </head>
     <body style="background-color:powderblue;">
 </html>
