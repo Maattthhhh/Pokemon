@@ -77,14 +77,6 @@
             white-space: nowrap;
             }
 
-        .vastolorde:focus {
-            text-decoration: none;
-        }
-
-        .vastolorde:hover {
-            text-decoration: none;
-        }
-
         .vastolorde:active {
             box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
             outline: 0;
@@ -107,6 +99,62 @@
             font-size: 25px;
             color: #ffcb05;
             text-shadow: -1.5px 0 black, 0 1.5px black, 1.5px 0 black, 0 -1.5px black;
+        }
+        .container {
+            text-align: center;
+            position: relative;
+        }
+        #myImage {
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: #fff 4px 4px 0 0, #000 4px 4px 0 1px;
+            text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+        }
+        .dropdown-content {
+            position: absolute;
+            top: calc(8% + 52px);
+            right: 14.1%;
+            height: 200px;
+            width: 200px;
+            overflow: 500px;
+            overflow-y: auto;
+            display: none;
+        }
+        .dropdown-content table {
+            width: 100%;
+        }
+        .dropdown-content th, .dropdown-content td {
+            padding: 8px;
+            width: 100px; 
+        }
+
+        .dropdown-content th {
+            background-color: #f2f2f2;
+        }
+        .dropdown-content td {
+            border-bottom: 1px solid #070707;
+        }
+        .dropdown-content tr:hover {
+            background-color: #fcfbfb;
+        }
+        .show {
+            display: list-item;
+        }
+        .dropdown-button {
+            font-family: 'Pokemon Solid', sans-serif;
+            text-shadow: -1.5px 0 black, 0 1.5px black, 1.5px 0 black, 0 -1.5px black;
+            position: absolute;
+            top: 0;
+            right: 20%;
+            transform: translateX(50%);
+            background-color: #3498DB;
+            color: white;
+            padding: 16px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            padding: 12px 50px;
         }   
     </style>
     <head>
@@ -118,10 +166,22 @@
     </head>
         <img src="pokeball.jpg" id="bach">
         <h1><span class="js-letter">Pokémon!</span></h1>
-        <br>
-        <a href="https://maattthhhh.github.io/Tracking-ISS/tracking_iss.html"><img id="myImage" src="pikachu.gif" style="width:400px; height: 400px" class="teamrocket"></a>
-        <br>
-        <br>
+        <div class="container">
+        <a href="https://maattthhhh.github.io/Tracking-ISS/tracking_iss.html"><img id="myImage" src="pikachu.gif" style="width:400px; height: 400px"></a>
+        <button id="dropdownButton" onclick="toggleDropdown()" class="dropdown-button">Pokemon List</button>
+            <div id="dropdownContent" class="dropdown-content">
+                <table id="data-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
         <div id="pokemonInfo"></div>
         <br>
         <br>
@@ -138,6 +198,7 @@
                     hichigo.innerHTML = "Generate Random Pokémon!";
                     misty++;
                 }
+                checkPokemon(myPokemon)
             }
         </script>
         <script>
@@ -161,6 +222,35 @@
                     this.classList.remove("active")
                 })
             })
+        </script>
+        <script>
+            const tableBody = document.querySelector('#data-table tbody');
+            for (const key in mapping) {
+            if (mapping.hasOwnProperty(key)) {
+                const value = mapping[key];
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${key}</td><td>${value}</td>`;
+                tableBody.appendChild(row);
+            }
+            }
+        </script>
+        <script>
+            function toggleDropdown() {
+                var dropdownContent = document.getElementById("dropdownContent");
+                dropdownContent.classList.toggle("show");
+            }
+            window.onclick = function(event) {
+                if (!event.target.matches('#dropdownButton')) {
+                    var dropdowns = document.getElementsByClassName("dropdown-content");
+                    var i;
+                    for (i = 0; i < dropdowns.length; i++) {
+                        var openDropdown = dropdowns[i];
+                        if (openDropdown.classList.contains('show')) {
+                            openDropdown.classList.remove('show');
+                        }
+                    }
+                }
+            }
         </script>
     <body style="background-color:powderblue;">
 </html>

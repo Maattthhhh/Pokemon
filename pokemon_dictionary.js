@@ -155,7 +155,6 @@ const mapping = {
 function checkPokemon(pokemonName) {
     const pokemonInfoDiv = document.getElementById('pokemonInfo');
     mapping[pokemonName]
-    const pokemonData = mapping[pokemonName];
     const infoString = `${pokemonName}`
     pokemonInfoDiv.innerHTML = infoString;
 }
