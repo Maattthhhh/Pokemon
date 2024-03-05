@@ -229,7 +229,7 @@
             if (mapping.hasOwnProperty(key)) {
                 const value = mapping[key];
                 const row = document.createElement('tr');
-                row.innerHTML = `<td>${key}</td><td>${value}</td>`;
+                row.innerHTML = `<td>${key}</td><td><a href="https://pokemondb.net/pokedex/${value}" target="_blank">${value}</a></td>`
                 tableBody.appendChild(row);
             }
             }
