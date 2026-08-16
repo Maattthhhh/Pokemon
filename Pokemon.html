@@ -2,8 +2,8 @@
 <html>
     <style>
         @font-face {
-            font-family: 'Pokemon Hollow';
-            src: url('pokemon-hollow.woff') format('woff');
+            font-family: 'Pokemon Solid';
+            src: url('static/Pokemon-Solid.woff') format('woff');
         }
         body{
             text-align: center;
@@ -11,16 +11,24 @@
         .letter{
             font-family: 'Pokemon Solid', sans-serif;
             display: inline-block;
-            letter-spacing: 10px;
-            font-size: 50px;
+            font-size: 65px;
+            letter-spacing: 1px;
             color: #ffcb05;
-            text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+            -webkit-text-stroke: 3px #2a75bb;
+            text-shadow: 
+                3px 3px 0 #1d2c5e,
+                -3px 3px 0 #1d2c5e,
+                3px -3px 0 #1d2c5e,
+                -3px -3px 0 #1d2c5e;
         }
         .letter.active{
             transform: scale(1.5) rotate(20deg);
         }
         h1{
-            display: inline-block;            
+            display: inline-block;
+            margin: 0 0 5px 0;
+            line-height: 1;
+            vertical-align: middle;
         }
         img {
             display: inline-block;
@@ -40,6 +48,13 @@
             animation-timing-function: linear;
             animation-iteration-count: infinite;
             filter: brightness(100%);
+        }
+        #bach {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            margin-right: 20px;
+            vertical-align: middle;
         }
         @keyframes bosch{
             0%{
@@ -110,6 +125,8 @@
             margin-right: auto;
             box-shadow: #fff 4px 4px 0 0, #000 4px 4px 0 1px;
             text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+            max-width: 100%;
+            max-height: 100%;
         }
         .dropdown-content {
             position: absolute;
@@ -169,7 +186,7 @@
             -webkit-user-select: none;
             vertical-align: middle;
             white-space: nowrap;
-        }   
+        }
     </style>
     <head>
         <meta charset="UTF-8">
@@ -179,9 +196,13 @@
         <script src="pokemon_dictionary.js"></script>
     </head>
         <img src="pokeball.jpg" id="bach">
-        <h1><span class="js-letter">Pokémon!</span></h1>
-        <div class="container">
-        <a href="https://maattthhhh.github.io/Tracking-ISS/tracking_iss.html"><img id="myImage" src="pikachu.gif" style="width:400px; height: 400px"></a>
+        <h1>Pokémon!</h1>
+        <br>
+        <br>
+        <div class="container">        
+        <div class="image-container">
+            <a href="https://maattthhhh.github.io/Tracking-ISS/tracking_iss.html"><img id="myImage" src="pikachu.gif" style="width:400px; height: 400px"></a>
+        </div>
         <button id="dropdownButton" onclick="toggleDropdown()" class="dropdown-button">Pokemon List</button>
             <div id="dropdownContent" class="dropdown-content">
                 <table id="data-table">
@@ -198,21 +219,18 @@
         </div>
         <div id="pokemonInfo"></div>
         <br>
-        <br>
-        <button onclick="gary()" class="vastolorde" id="hichigo">Generate Random Pokémon!</button>
+        <button onclick="gary()" class="vastolorde">Generate Random Pokémon!</button>
         <script>
             function gary(){
                 const AD = Math.ceil(Math.random()*150);
                 const myPokemon = mapping[AD];
-                checkPokemon(myPokemon)
                 var brock = document.getElementById("myImage");
                 let misty = 0
                 while (misty < 150){
                     brock.src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/crystal/"+AD+".png";
-                    hichigo.innerHTML = "Generate Random Pokémon!";
                     misty++;
+                    checkPokemon(myPokemon)
                 }
-                checkPokemon(myPokemon)
             }
         </script>
         <script>
