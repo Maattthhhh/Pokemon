@@ -187,6 +187,23 @@
             vertical-align: middle;
             white-space: nowrap;
         }
+        .selectyourversion {
+            font-family: 'Pokemon Solid', sans-serif;
+            position: absolute;
+            top: 0;
+            left: 20%;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 10px;
+        }
+        .selectyourversion button {
+            font-family: 'Pokemon Solid', sans-serif;
+            padding: 10px 20px;
+            border: 2px solid #000;
+            background-color: #fff; 
+            cursor: pointer;
+        }
     </style>
     <head>
         <meta charset="UTF-8">
@@ -202,6 +219,11 @@
         <div class="container">        
         <div class="image-container">
             <a href="https://maattthhhh.github.io/Tracking-ISS/tracking_iss.html"><img id="myImage" src="pikachu.gif" style="width:400px; height: 400px"></a>
+        </div>
+        <div id="sizeSelector" hidden class="selectyourversion">
+            <button id="prevSize">Silver</button>
+            <button id="presSize">Crystal</button>
+            <button id="nextSize">Gold</button>
         </div>
         <button id="dropdownButton" onclick="toggleDropdown()" class="dropdown-button">Pokemon List</button>
             <div id="dropdownContent" class="dropdown-content">
@@ -226,11 +248,21 @@
                 const myPokemon = mapping[AD];
                 var brock = document.getElementById("myImage");
                 let misty = 0
+                document.getElementById("sizeSelector").hidden = false;
                 while (misty < 150){
                     brock.src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/crystal/"+AD+".png";
                     misty++;
                     checkPokemon(myPokemon)
                 }
+                document.getElementById("prevSize").onclick = function() {
+                    brock.src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/silver/" + AD + ".png";
+                };
+                document.getElementById("presSize").onclick = function() {
+                    brock.src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/crystal/" + AD + ".png";
+                };
+                document.getElementById("nextSize").onclick = function() {
+                    brock.src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/gold/" + AD + ".png";
+                };
             }
         </script>
         <script>
