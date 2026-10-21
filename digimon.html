@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        @font-face {
+            font-family: 'Pokemon Solid';
+            src: url('static/Pokemon-Solid.woff') format('woff');
+        }
+        body{
+            text-align: center;
+        }
+        .letter{
+            font-family: 'Pokemon Solid', sans-serif;
+            display: inline-block;
+            font-size: 65px;
+            letter-spacing: 1px;
+            color: #ffcb05;
+            -webkit-text-stroke: 3px #2a75bb;
+            text-shadow: 
+                3px 3px 0 #1d2c5e,
+                -3px 3px 0 #1d2c5e,
+                3px -3px 0 #1d2c5e,
+                -3px -3px 0 #1d2c5e;
+        }
+        .letter.active{
+            transform: scale(1.5) rotate(20deg);
+        }
+        h1{
+            display: inline-block;
+            margin: 0 0 5px 0;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        img {
+            display: inline-block;
+            height: 100px;
+            width: 100px;
+        }
+        #myImage {
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: #fff 4px 4px 0 0, #000 4px 4px 0 1px;
+            text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+        }   
+        #bach:hover{
+            animation-name: bosch;
+            animation-duration: 1.2s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            filter: brightness(100%);
+        }
+        #bach {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            margin-right: 20px;
+            vertical-align: middle;
+        }
+        @keyframes bosch{
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+        .vastolorde {
+            appearance: button;
+            background-color:red;
+            background-image: none;
+            border: 1px solid #000;
+            border-radius: 4px;
+            box-shadow: #fff 4px 4px 0 0,#000 4px 4px 0 1px;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            font-family: 'Pokemon Solid', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 10px;
+            line-height: 20px;
+            margin: 0 5px 10px 0;
+            overflow: visible;
+            padding: 12px 40px;
+            text-align: center;
+            text-transform: none;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+            vertical-align: middle;
+            white-space: nowrap;
+            }
+
+        .vastolorde:active {
+            box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
+            outline: 0;
+        }
+
+        .vastolorde:not([disabled]):active {
+            box-shadow: #fff 2px 2px 0 0, red 2px 2px 0 1px;
+            transform: translate(2px, 2px);
+        }
+
+        @media (min-width: 768px) {
+        .vastolorde {
+            padding: 12px 50px;
+        }
+        }
+        #pokemonInfo {
+            font-family: 'Pokemon Solid', sans-serif;
+            display: inline-block;
+            letter-spacing: 5px;
+            font-size: 25px;
+            color: #ffcb05;
+            text-shadow: -1.5px 0 black, 0 1.5px black, 1.5px 0 black, 0 -1.5px black;
+        }
+        .container {
+            text-align: center;
+            position: relative;
+        }
+        #myImage {
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: #fff 4px 4px 0 0, #000 4px 4px 0 1px;
+            text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .dropdown-content {
+            position: absolute;
+            top: calc(8% + 57px);
+            right: 13%;
+            height: 200px;
+            width: 200px;
+            overflow: 500px;
+            overflow-y: auto;
+            display: none;
+        }
+        .dropdown-content table {
+            width: 100%;
+        }
+        .dropdown-content th, .dropdown-content td {
+            padding: 8px;
+            width: 100px; 
+        }
+
+        .dropdown-content th {
+            background-color: #f2f2f2;
+        }
+        .dropdown-content td {
+            border-bottom: 1px solid #070707;
+        }
+        .dropdown-content tr:hover {
+            background-color: #fcfbfb;
+        }
+        .show {
+            display: list-item;
+        }
+        .dropdown-button {
+            font-family: 'Pokemon Solid', sans-serif;
+            text-shadow: -1.5px 0 black, 0 1.5px black, 1.5px 0 black, 0 -1.5px black;
+            position: absolute;
+            top: 0;
+            right: 20%;
+            transform: translateX(50%);
+            background-color: #3498DB;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 10px 40px;
+            border: solid transparent;
+            border-radius: 16px;
+            border-width: 0.5px;
+            box-sizing: border-box;
+            box-shadow: #fff 4px 4px 0 0, #000 4px 4px 0 1px;
+            font-weight: 500;
+            margin: 0;
+            outline: none;
+            overflow: visible;
+            text-transform: uppercase;
+            touch-action: manipulation;
+            transition: filter .2s;
+            user-select: none;
+            -webkit-user-select: none;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+    </style>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/jpg" sizes="16x16" href="pokeball.jpg">
+        <script src="pokemon_dictionary.js"></script>
+    </head>
+        <img src="pokeball.jpg" id="bach">
+        <h1>Pokémon!</h1>
+        <br>
+        <br>
+        <div class="container">        
+        <div class="image-container">
+            <a href="https://maattthhhh.github.io/Tracking-ISS/tracking_iss.html"><img id="myImage" src="pikachu.gif" style="width:400px; height: 400px"></a>
+        </div>
+        <button id="dropdownButton" onclick="toggleDropdown()" class="dropdown-button">Pokemon List</button>
+            <div id="dropdownContent" class="dropdown-content">
+                <table id="data-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="pokemonInfo"></div>
+        <br>
+        <button onclick="gary()" class="vastolorde">Generate Random Pokémon!</button>
+        <script>
+            let intervalId;
+            function gary(){
+                const AD = Math.ceil(Math.random()*150);
+                const myPokemon = mapping[AD];
+                const digimon = [
+                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/silver/" + AD + ".png",
+                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/crystal/" + AD + ".png",
+                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/gold/" + AD + ".png"
+                ]
+                var brock = document.getElementById("myImage");
+                let misty = 0
+                while (misty < 150){
+                    brock.src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/crystal/"+AD+".png";
+                    misty++;
+                    checkPokemon(myPokemon)
+                }
+                clearInterval(intervalId);
+                let index = 0;
+                intervalId = setInterval(function() {
+                    index = (index + 1) % digimon.length;
+
+                    document.getElementById("myImage").src = digimon[index];
+
+                }, 500);
+            }
+        </script>
+        <script>
+            const h1 = document.querySelector("h1")
+            const letters = h1.innerText.split('')
+            let html = ""
+            letters.forEach(letter=>{
+                let classes = ''
+                if(letter!==' '){
+                    classes = 'letter js-letter'
+                }
+                html = html + `<span class ="${classes}">${letter}</span>`
+            })
+            h1.innerHTML = html
+            const jsLetters = document.querySelectorAll(".js-letter")
+            jsLetters.forEach(node=>{
+                node.addEventListener("mouseover", function(event){
+                    this.classList.add("active")
+                })
+                node.addEventListener("mouseout", function(event){
+                    this.classList.remove("active")
+                })
+            })
+        </script>
+        <script>
+            const tableBody = document.querySelector('#data-table tbody');
+            for (const key in mapping) {
+            if (mapping.hasOwnProperty(key)) {
+                const value = mapping[key];
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${key}</td><td><a href="https://pokemondb.net/pokedex/${value}" target="_blank">${value}</a></td>`
+                tableBody.appendChild(row);
+            }
+            }
+        </script>
+        <script>
+            function toggleDropdown() {
+                var dropdownContent = document.getElementById("dropdownContent");
+                dropdownContent.classList.toggle("show");
+            }
+            window.onclick = function(event) {
+                if (!event.target.matches('#dropdownButton')) {
+                    var dropdowns = document.getElementsByClassName("dropdown-content");
+                    var i;
+                    for (i = 0; i < dropdowns.length; i++) {
+                        var openDropdown = dropdowns[i];
+                        if (openDropdown.classList.contains('show')) {
+                            openDropdown.classList.remove('show');
+                        }
+                    }
+                }
+            }
+        </script>
+    <body style="background-color:powderblue;">
+</html>
