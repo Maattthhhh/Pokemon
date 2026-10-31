@@ -222,6 +222,33 @@
         #niponjin {
             top: calc(55% + 90px);
         }
+        .text-bubble {
+            /* Core structural shape */
+            position: relative;
+            display: inline-block;
+            border-radius: 18px;
+            
+            /* Background colors */
+            background-color: #007aff;
+            
+            /* Essential spacing so text doesn't hit the curved edges */
+            padding: 10px 16px; 
+            }
+
+            /* The Bubble Tail */
+            .text-bubble::after {
+            content: "";
+            position: absolute;
+            
+            /* Anchor to the bottom-left edge */
+            bottom: -8px;
+            left: 15px;
+            
+            /* Creates the triangle shape using borders */
+            border-width: 8px 8px 0;
+            border-style: solid;
+            border-color: #007aff transparent;
+        }
     </style>
     <head>
         <meta charset="UTF-8">
@@ -258,15 +285,22 @@
             </div>
         </div>
         <div id="pokemonInfo"></div>
+        </div>
         <br>
         <p id="nihongo"></p>
         <br>
         <p id="niponjin"></p>
         <button onclick="gary()" class="vastolorde">Generate Random Pokémon!</button>
         <script>
+            let intervalId;
             function gary(){
                 const AD = Math.ceil(Math.random()*150);
                 const myPokemon = mapping[AD];
+                const digimon = [
+                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/silver/" + AD + ".png",
+                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/crystal/" + AD + ".png",
+                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/gold/" + AD + ".png"
+                ]
                 var brock = document.getElementById("myImage");
                 let misty = 0
                 document.getElementById("sizeSelector").hidden = false;
@@ -276,14 +310,24 @@
                     checkPokemon(myPokemon)
                 }
                 document.getElementById("prevSize").onclick = function() {
+                    clearInterval(intervalId);
                     brock.src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/silver/" + AD + ".png";
                 };
                 document.getElementById("presSize").onclick = function() {
+                    clearInterval(intervalId);
                     brock.src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/crystal/" + AD + ".png";
                 };
                 document.getElementById("nextSize").onclick = function() {
+                    clearInterval(intervalId);
                     brock.src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/gold/" + AD + ".png";
                 };
+                let index = 0;
+                intervalId = setInterval(function() {
+                    index = (index + 1) % digimon.length;
+
+                    document.getElementById("myImage").src = digimon[index];
+
+                }, 500);
             const katakanaToRomaji = {
                 // Basic vowels
                 'ア': 'a', 'イ': 'i', 'ウ': 'u', 'エ': 'e', 'オ': 'o',
@@ -382,7 +426,26 @@
             };
             function convertToRomajiFallback(katakanaStr) {
                 if (!katakanaStr) return "Romaji not found";
-                return katakanaStr.split('').map(char => katakanaToRomaji[char] || char).join('');
+
+                let romaji = "";
+                const chars = [...katakanaStr];
+
+                for (let i = 0; i < chars.length; i++) {
+                    const char = chars[i];
+
+                    if (char === "ー") {
+                        const lastVowel = romaji.match(/[aeiou]$/i);
+                        romaji += lastVowel ? lastVowel[0] : "";
+                    } else if (char === "ッ") {
+                        const nextRomaji = katakanaToRomaji[chars[i + 1]] || "";
+                        const firstConsonant = nextRomaji.match(/^[bcdfghjklmnpqrstvwxyz]/i);
+                        if (firstConsonant) romaji += firstConsonant[0];
+                    } else {
+                        romaji += katakanaToRomaji[char] || char;
+                    }
+                }
+
+                return romaji;
             }
             async function getPokemon() {
                 const req = await fetch(
