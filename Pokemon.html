@@ -301,6 +301,7 @@
                     "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/crystal/" + AD + ".png",
                     "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/gold/" + AD + ".png"
                 ]
+                var avatar = document.querySelector(".selectyourversion");
                 var brock = document.getElementById("myImage");
                 let misty = 0
                 document.getElementById("sizeSelector").hidden = false;
@@ -328,6 +329,7 @@
                     document.getElementById("myImage").src = digimon[index];
 
                 }, 500);
+                avatar.style.display = "flex";
             const katakanaToRomaji = {
                 // Basic vowels
                 'ア': 'a', 'イ': 'i', 'ウ': 'u', 'エ': 'e', 'オ': 'o',
